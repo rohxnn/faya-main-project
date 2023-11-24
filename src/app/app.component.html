@@ -1,5 +1,146 @@
-<button class="btn btn-primary">Click me</button>
 
-<i class="fa fa-eye"></i>
+    <div class="container-fluid">
+        <form [formGroup]="regform">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-5">
+                <header>
+                    <h1>Registration Form</h1>
+                </header>
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="First Name" formControlName="fname">
+                    </div>
+                    <div class="col">
+                        <input type="text" name="" id="" class="form-control" placeholder="Last Name" formControlName="lname">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Email" formControlName="email">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <input type="date" class="form-control" placeholder="dd-mm-yyyy" formControlName="date">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Contact Number" formControlName="num">
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col">
+                        <label for="gender" class="form-label heading">Gender</label>
+                    </div>
+                </div>
+                <div class="form-group" formControlName="gender">
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="gender" value="male" id="male">
+                    <label for="male" class="form-check-label">
+                        Male
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="gender" value="female" id="female">
+                    <label for="female" class="form-check-label">
+                        Female
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="gender" value="prefer not to say" id="prefer">
+                    <label for="prefer" class="form-check-label">
+                        Prefer not to say
+                    </label>
+                </div>
+            </div>
+            <div class="container" formGroupName="paddress">
+                <div class="row mt-5">
+                    <div class="col">
+                        <label for="Address" class="form-label heading">Permanent Address</label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Street Address" formControlName="saddress">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <select name="" id="" class="form-select" formControlName="country">
+                            <option value="">Country</option>
+                            <option value="india">India</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="City" formControlName="city">         
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Region" formControlName="region">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Postal Code" formControlName="pin">
+                    </div>
+                </div>
+            </div>
+                <div class="form-check mt-3">
+                    <input type="checkbox" class="form-check-input" (change)="isChecked()" >
+                    <label for="" class="form-check-label">Same as Permanent Address</label>
+                </div>
+                <div class="container" formGroupName="caddress" *ngIf="ischecked">
+                <div class="row mt-5">
+                    <div class="col">
+                        <label for="Address" class="form-label heading">Communication Address</label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Street Address" formControlName="saddress1">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <select name="" id="" class="form-select" formControlName="country1">
+                            <option value="" >Country</option>
+                            <option value="india">India</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="City" formControlName="city1">         
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Region" formControlName="region1">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Postal Code" formControlName="pin1">
+                    </div>
+                </div>
+            </div>
+                <div class="row mt-5" formArrayName="skills">
+                    <div class="col form-inline">
+                        <label for="Address" class="form-label heading">Add Skill
+                            <button class="btn skill">Add New Skill</button>
+                        </label> 
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="d-flex" > 
+                        <input type="text"  class="form-control mt-3" placeholder="Skill">
+                        <i class="fa fa-trash bin " aria-hidden="true"  ></i>  
+                     </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col">
+                        <button class="btn sub">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </form>
+    </div>
 
 <router-outlet></router-outlet>
