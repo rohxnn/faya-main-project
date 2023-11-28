@@ -11,35 +11,36 @@
                     <div class="col">
                         <input type="text" class="form-control" placeholder="First Name" formControlName="First_name">
                         <div *ngIf="regform.get('First_name').invalid && (regform.get('First_name').touched || regform.get('First_name').dirty)">
-                            <small>First Name is required</small>
+                            <small>*First Name is required</small>
                           </div>
                     </div>
                     <div class="col">
                         <input type="text" name="" id="" class="form-control" placeholder="Last Name" formControlName="Last_name">
                         <div *ngIf="regform.get('Last_name').invalid && (regform.get('Last_name').touched || regform.get('Last_name').dirty)">
-                            <small>Last Name is required</small>
+                            <small>*Last Name is required</small>
                           </div>
                     </div>
                 </div>
+              
                 <div class="row mt-3">
                     <div class="col">
                         <input type="text" class="form-control" placeholder="Email" formControlName="Email">
                         <div *ngIf="regform.get('Email').invalid && (regform.get('Email').touched || regform.get('Email').dirty)">
-                            <small>Email is required</small>
+                            <small>*Email is required</small>
                           </div>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <input type="date" max="2023-12-31" class="form-control" placeholder="dd-mm-yyyy" formControlName="DOB">
+                        <input type="date" max="{{formattedDate}}" class="form-control" placeholder="dd-mm-yyyy" formControlName="DOB">
                         <div *ngIf="regform.get('DOB').invalid && (regform.get('DOB').touched || regform.get('DOB').dirty)">
-                            <small>DOB is required</small>
+                            <small>*DOB is required</small>
                           </div>
                     </div>
                     <div class="col">
                         <input type="text" class="form-control" placeholder="Contact Number" formControlName="Ph_num"  mask="(000) 000-000-0000">
                         <div *ngIf="regform.get('Ph_num').invalid && (regform.get('Ph_num').touched || regform.get('Ph_num').dirty)">
-                            <small>Phone Number is required</small>
+                            <small>*Phone Number is required</small>
                           </div>
                         
                     </div>
@@ -52,13 +53,13 @@
                 </div>
                 <div class="form-group" >
                 <div class="form-check form-check-inline">
-                    <input type="radio" class="form-check-input" name="Gender" value="male" id="male" formControlName="Gender">
-                    <label for="male" class="form-check-label">
+                    <input type="radio" class="form-check-input" name="Gender" value="male" id="male"  formControlName="Gender" checked>
+                    <label for="male" class="form-check-label" aria>
                         Male
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input type="radio" class="form-check-input" name="Gender" value="female" id="female" formControlName="Gender">
+                    <input type="radio" class="form-check-input" name="Gender" value="female" id="female" formControlName="Gender" >
                     <label for="female" class="form-check-label">
                         Female
                     </label>
@@ -70,13 +71,10 @@
                     </label>
                 </div>
                 
-   
-        <div *ngIf="regform.get('Gender').hasError('required')">
-            <small>Please select a gender.</small></div>
-      
-
-
-    
+        <!-- <div *ngIf="formSubmitted">
+        <div *ngIf="regform.get('Gender').hasError('required')" class="gender" >
+            <small>*Please select a gender.</small></div>
+        </div> -->
             </div>
             <div class="container" formGroupName="Permanent_address">
                 <div class="row mt-5">
@@ -89,7 +87,7 @@
                     <div class="col">
                         <input type="text" class="form-control" placeholder="Street Address" formControlName="Street">
                         <div *ngIf="regform.get(['Permanent_address','Street']).invalid && (regform.get(['Permanent_address','Street']).touched || regform.get(['Permanent_address','Street']).dirty)">
-                            <small>Enter your Address</small>
+                            <small>*Enter your Address</small>
                           </div>
                         
                     </div>
@@ -101,28 +99,28 @@
                             <option value="india">India</option>
                         </select>
                         <div *ngIf="regform.get(['Permanent_address','Country']).value==='Country' && regform.get(['Permanent_address','Country']).touched">
-                            <small>Enter your Country</small>
-
-                          </div>
+                            <small>*Enter your Country</small>
+                        </div>
                     </div>
-                    <div class="col">
+                    <div class="col" >
                         <input type="text" class="form-control" placeholder="City" formControlName="City"> 
                         <div *ngIf="regform.get(['Permanent_address','City']).invalid && (regform.get(['Permanent_address','City']).touched || regform.get(['Permanent_address','City']).dirty)">
-                            <small>Enter your City</small>
+                            <small>*Enter your City</small>
                           </div>        
                     </div>
+                    
                 </div>
                 <div class="row mt-3">
                     <div class="col">
                         <input type="text" class="form-control" placeholder="Region" formControlName="Region">
                         <div *ngIf="regform.get(['Permanent_address','Region']).invalid && (regform.get(['Permanent_address','Region']).touched || regform.get(['Permanent_address','Region']).dirty)">
-                            <small>Enter your Region</small>
+                            <small>*Enter your Region</small>
                           </div>
                     </div>
                     <div class="col">
                         <input type="number" class="form-control" placeholder="Postal Code" formControlName="Postal_code">
                         <div *ngIf="regform.get(['Permanent_address','Postal_code']).invalid && (regform.get(['Permanent_address','Postal_code']).touched || regform.get(['Permanent_address','Postal_code']).dirty)">
-                            <small>Enter your Postal_code-Code</small>
+                            <small>*Enter your Pin Code</small>
                           </div>
                     </div>
                 </div>
@@ -142,7 +140,7 @@
                     <div class="col">
                         <input type="text" class="form-control" placeholder="Street Address" formControlName="Street">
                         <div *ngIf="regform.get(['Communication_address','Street']).invalid && (regform.get(['Communication_address','Street']).touched || regform.get(['Communication_address','Street']).dirty)">
-                            <small>Enter your Address</small>
+                            <small>*Enter your Address</small>
                           </div>
                     </div>
                 </div>
@@ -153,7 +151,7 @@
                             <option value="india">India</option>
                         </select>
                         <div *ngIf="regform.get(['Communication_address','Country']).value==='Country' && regform.get(['Communication_address','Country']).touched">
-                            <small>Enter your Country</small>
+                            <small>*Enter your Country</small>
 
                           </div>
                         
@@ -161,7 +159,7 @@
                     <div class="col">
                         <input type="text" class="form-control" placeholder="City" formControlName="City"> 
                         <div *ngIf="regform.get(['Communication_address','City']).invalid && (regform.get(['Communication_address','City']).touched || regform.get(['Communication_address','City']).dirty)">
-                            <small>Enter your City</small>
+                            <small>*Enter your City</small>
                           </div>        
                     </div>
                 </div>
@@ -169,13 +167,13 @@
                     <div class="col">
                         <input type="text" class="form-control" placeholder="Region" formControlName="Region">
                         <div *ngIf="regform.get(['Communication_address','Region']).invalid && (regform.get(['Communication_address','Region']).touched || regform.get(['Communication_address','Region']).dirty)">
-                            <small>Enter your Region</small>
+                            <small>*Enter your Region</small>
                           </div>
                     </div>
                     <div class="col">
                         <input type="Ph_number" class="form-control" placeholder="Postal Code" formControlName="Postal_code">
                         <div *ngIf="regform.get(['Communication_address','Postal_code']).invalid && (regform.get(['Communication_address','Postal_code']).touched || regform.get(['Communication_address','Postal_code']).dirty)">
-                            <small>Enter your Postal-Code</small>
+                            <small>*Enter your Pin Code</small>
                           </div>
                     </div>
                 </div>
@@ -184,7 +182,7 @@
                 <div class="row mt-5" >
                     <div class="col form-inline">
                         <label for="Address" class="form-label heading">Add Skill
-                            <button class="btn skill" (click)="addSKill()">Add New Skill</button>
+                            <button type="button" class="btn skill" (click)="addSKill()">Add New Skill</button>
                         </label> 
                     </div>
                 </div>
@@ -192,11 +190,12 @@
                     <div class=""  *ngFor="let skill of skills.controls; let i=index">
                     <div class="d-flex"> 
                         <input type="text" class="form-control mt-3" placeholder="Skill" [formControlName]="i">
-                        <i class="fa fa-trash bin " aria-hidden="true" (click)="delete(i)"  ></i>  
+                        <i class="fa fa-trash bin " aria-hidden="true" (click)="delete(i)"></i>  
                        
                      </div>
-                     <div *ngIf="skills.at(i).invalid && skills.at(i).touched" class="skill-message">
-                        <small>Skill is required</small>
+                     
+                     <div  class="skill-message" *ngIf="skills.controls[i].invalid && skills.controls[i].touched">
+                        <small>*Skill is required</small>
                     </div> 
                     
                     </div>
@@ -206,7 +205,7 @@
             </div>
                 <div class="row mt-5">
                     <div class="col">
-                        <button class="btn sub" >Submit</button>
+                        <button class="btn sub" type="submit" >Submit</button>
                     </div>
                 </div>
             </div>
