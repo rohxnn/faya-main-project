@@ -57,3 +57,12 @@ header
     padding: 30px;
 
 }
+small
+{
+    color: red;
+}
+.skill-message
+{
+    display: flex;
+    flex-direction: column !important;
+}
