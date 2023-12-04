@@ -27,40 +27,40 @@ export class RegistrationComponent implements OnInit {
 
   initRegistrationform() {
     this.regform = this.fb.group({
-      First_name: ['', Validators.required],
-      Last_name: ['', Validators.required],
-      Email: ['', [Validators.required, Validators.email]],
-      DOB: ['', Validators.required],
-      Ph_num: ['', Validators.required],
-      Gender: ['male', Validators.required],
-      Permanent_address: this.fb.group({
-        Street: ['', Validators.required],
-        Country: ['', Validators.required],
-        City: ['', Validators.required],
-        Region: ['', Validators.required],
-        Postal_code: ['', Validators.required],
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      date_of_birth: ['', Validators.required],
+      phone: ['', Validators.required],
+      gender: ['male', Validators.required],
+      permanent_address: this.fb.group({
+        street: ['', Validators.required],
+        country: ['', Validators.required],
+        city: ['', Validators.required],
+        region: ['', Validators.required],
+        postal_code: ['', Validators.required],
       }),
-      Communication_address: this.fb.group({
-        Street: ['', Validators.required],
-        Country: ['', Validators.required],
-        City: ['', Validators.required],
-        Region: ['', Validators.required],
-        Postal_code: ['', Validators.required],
+      communication_address: this.fb.group({
+        street: ['', Validators.required],
+        country: ['', Validators.required],
+        city: ['', Validators.required],
+        region: ['', Validators.required],
+        postal_code: ['', Validators.required],
       }),
       skills: this.fb.array([this.fb.control('', Validators.required)]),
     });
   }
 
-  resetPermanentcity() { this.regform.get(['Permanent_address', 'City']).setValue(''); }  
+  resetPermanentCity() { this.regform.get(['permanent_address', 'city']).setValue(''); }  
 
-  resetCommunicationcity() { this.regform.get(['Communication_address', 'City']).setValue(''); } 
+  resetCommunicationCity() { this.regform.get(['communication_address', 'city']).setValue(''); } 
 
   resetAddress() {
     this.isSameAsPermanent = !this.isSameAsPermanent;
-    if (this.regform.get(['Communication_address'])) {
-      this.regform.get(['Communication_address']).reset();
+    if (this.regform.get(['communication_address'])) {
+      this.regform.get(['communication_address']).reset();
     }
-    this.regform.get(['Communication_address', 'Country']).setValue('');
+    this.regform.get(['communication_address', 'country']).setValue('');
   }
 
   private scrollToFirstInvalidControl() {
@@ -90,13 +90,13 @@ export class RegistrationComponent implements OnInit {
   onSubmit() {
     const isFormSubmitted = this.formSubmitted || (this.formSubmitted = true);
     if (this.isSameAsPermanent) {
-      const addr = this.regform.get('Permanent_address')?.value;
-      this.regform.controls['Communication_address'].setValue({
-        Street: addr.Street,
-        Country: addr.Country,
-        City: addr.City,
-        Region: addr.Region,
-        Postal_code: addr.Postal_code,
+      const addr = this.regform.get('permanent_address')?.value;
+      this.regform.controls['communication_address'].setValue({
+        street: addr.street,
+        country: addr.country,
+        city: addr.city,
+        region: addr.region,
+        postal_code: addr.postal_code,
       });
     }
     if (this.regform.valid) {
@@ -106,10 +106,40 @@ export class RegistrationComponent implements OnInit {
       this.regform.addControl(
         'isSameAsPermanent',
         new FormControl(this.isSameAsPermanent));
-      console.log(this.regform.value);}
+          this.getFormBody();
+        }
     else if (this.regform.invalid) {
       if (isFormSubmitted) {
         this.regform.markAllAsTouched();
         this.scrollToFirstInvalidControl();}}
+  }
+
+  getFormBody(){
+    const frmValue = this.regform.value;
+    const myObject={
+      First_name:frmValue.first_name,
+      Last_Name:frmValue.last_name,
+      Email:frmValue.email,
+      DOB:frmValue.date_of_birth,
+      Ph_num:frmValue.phone,
+      Gender:frmValue.gender,
+      Permanent_address:{
+        Street:frmValue.permanent_address.street,
+        Country:frmValue.permanent_address.country,
+        City:frmValue.permanent_address.city,
+        Region:frmValue.permanent_address.region,
+        Postal_Code:frmValue.permanent_address.postal_code,
+      },
+      isSameAsPermanent:this.regform.get('isSameAsPermanent').value,
+      Communication_address:{
+        Street:frmValue.communication_address.street,
+        Country:frmValue.communication_address.country,
+        City:frmValue.communication_address.city,
+        Region:frmValue.communication_address.region,
+        Postal_Code:frmValue.communication_address.postal_code,
+      },
+      Skills:frmValue.skills
+    }
+    console.log(myObject);
   }
 }
