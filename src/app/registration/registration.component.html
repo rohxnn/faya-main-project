@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="!goto_login">
     <form [formGroup]="regform" (ngSubmit)="onSubmit()">
         <div class="row">
             <div class="col-md-4"></div>   
@@ -323,12 +323,14 @@
                     <div class="col">
                         <button class="btn submit" type="submit" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">Submit</button>
-
                     </div>
-
                 </div>
             </div>
             <div class="col-md-4"></div>
         </div>
     </form>
 </div>
+<div *ngIf="goto_login">
+    <app-login [email]="" ></app-login>
+</div>
+

@@ -1,0 +1,29 @@
+<div class="container">
+  <header>
+    <h1>List of Customers</h1>
+  </header>
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">City</th>
+        <th scope="col">State</th>
+        <th scope="col">Country</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let people of list_of_customers; let i=index;">
+      <tr>
+        <th scope="row">{{people.i}}</th>
+        <td>{{people.name}}</td>
+        <td>{{people.address}}</td>
+        <td>{{people.city}}</td>
+        <td>{{people.state}}</td>
+        <td>{{people.country}}</td>
+        <td><button type="button" (click)="onEdit(people)">Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <app-child [customer_detail]="customer_details" (update_details)="onUpdate($event)"></app-child>
+</div>
