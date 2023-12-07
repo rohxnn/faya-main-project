@@ -1,0 +1,32 @@
+<header>
+    <h1>Details</h1>
+</header>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Customer No</th>
+            <td>{{customer_detail?.i}}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td><input type="text" [(ngModel)]="name"></td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td><input type="text" [(ngModel)]="address"></td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td><input type="text" [(ngModel)]="city"></td>
+        </tr>
+        <tr>
+            <th>State</th>
+            <td><input type="text" [(ngModel)]="state"></td>
+        </tr>
+        <tr>
+            <th>Country</th>
+            <td><input type="text" [(ngModel)]="country"></td>
+        </tr>
+    </tbody>
+    <button type="button" (click)="onUpdate()">Update</button>
+</table>

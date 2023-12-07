@@ -1,7 +1,7 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="!goto_login">
     <form [formGroup]="regform" (ngSubmit)="onSubmit()">
         <div class="row">
-            <div class="col-md-4"></div>   
+            <div class="col-md-4"></div>
             <div class="col-md-5">
                 <header>
                     <h1>Registration Form</h1>
@@ -15,8 +15,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <input type="text" name="" id="" class="form-control" placeholder="Last Name"
-                            formControlName="last_name">
+                        <input type="text" name="" id="" class="form-control" placeholder="Last Name" formControlName="last_name">
                         <div
                             *ngIf="regform.get('last_name').invalid && (regform.get('last_name').touched || regform.get('last_name').dirty)">
                             <small>*Last Name is required</small>
@@ -37,8 +36,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <input type="date" max="{{formattedDate}}" class="form-control" placeholder="date_of_birth"
-                            formControlName="date_of_birth">
+                        <input type="date" max="{{formattedDate}}" class="form-control" placeholder="date_of_birth" formControlName="date_of_birth">
                         <div
                             *ngIf="regform.get('date_of_birth').invalid && (regform.get('date_of_birth').touched || regform.get('date_of_birth').dirty)">
                             <small>*date_of_birth is required</small>
@@ -60,22 +58,19 @@
                 </div>
                 <div class="form-group">
                     <div class="form-check form-check-inline">
-                        <input type="radio" class="form-check-input" name="gender" value="male" id="male"
-                            formControlName="gender" checked>
+                        <input type="radio" class="form-check-input" name="gender" value="male" id="male" formControlName="gender" checked>
                         <label for="male" class="form-check-label" aria>
                             Male
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input type="radio" class="form-check-input" name="gender" value="female" id="female"
-                            formControlName="gender">
+                        <input type="radio" class="form-check-input" name="gender" value="female" id="female" formControlName="gender">
                         <label for="female" class="form-check-label">
                             Female
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input type="radio" class="form-check-input" name="gender" value="prefer not to say" 
-                            formControlName="gender">
+                        <input type="radio" class="form-check-input" name="gender" value="prefer not to say" formControlName="gender">
                         <label for="prefer not to say" class="form-check-label">
                             Prefer not to say
                         </label>
@@ -91,8 +86,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="street Address"
-                                formControlName="street">
+                            <input type="text" class="form-control" placeholder="street Address" formControlName="street">
                             <div
                                 *ngIf="regform.get(['permanent_address','street']).invalid && (regform.get(['permanent_address','street']).touched || regform.get(['permanent_address','street']).dirty)">
                                 <small>*Enter your Address</small>
@@ -101,7 +95,8 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col">
-                            <select name="" id="" class="form-select" formControlName="country" (change)="resetPermanentCity()">
+                            <select name="" id="" class="form-select" formControlName="country"
+                                (change)="resetPermanentCity()">
                                 <option value="" disabled selected>Select country</option>
                                 <option value="india">India</option>
                                 <option value="usa">USA</option>
@@ -174,8 +169,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Postal Code" mask="000-000"
-                                formControlName="postal_code">
+                            <input type="text" class="form-control" placeholder="Postal Code" mask="000-000" formControlName="postal_code">
                             <div
                                 *ngIf="regform.get(['permanent_address','postal_code']).invalid && (regform.get(['permanent_address','postal_code']).touched || regform.get(['permanent_address','postal_code']).dirty)">
                                 <small>*Enter your Pin Code</small>
@@ -199,8 +193,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="street Address"
-                                formControlName="street">
+                            <input type="text" class="form-control" placeholder="street Address" formControlName="street">
                             <div
                                 *ngIf="regform.get(['communication_address','street']).invalid && (regform.get(['communication_address','street']).touched || regform.get(['communication_address','street']).dirty)">
                                 <small>*Enter your Address</small>
@@ -209,7 +202,8 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col">
-                            <select name="" id="" class="form-select" formControlName="country" (change)="resetCommunicationCity()">
+                            <select name="" id="" class="form-select" formControlName="country"
+                                (change)="resetCommunicationCity()">
                                 <option value="" disabled selected> Select country</option>
                                 <option value="india">India</option>
                                 <option value="usa">USA</option>
@@ -230,7 +224,7 @@
                                 <small>*Enter your city</small>
                             </div>
                         </div>
-                        
+
                         <!-- country=India -->
                         <div class="col" *ngIf="regform.get(['communication_address','country']).value==='india'">
                             <select class="form-select" formControlName="city">
@@ -323,12 +317,13 @@
                     <div class="col">
                         <button class="btn submit" type="submit" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">Submit</button>
-
                     </div>
-
                 </div>
             </div>
             <div class="col-md-4"></div>
         </div>
     </form>
+</div>
+<div *ngIf="goto_login">
+    <app-login [credentials]="registrationFormData"></app-login>
 </div>

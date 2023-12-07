@@ -1,0 +1,20 @@
+.container{
+    
+    margin: 90px;
+    padding: 50px;
+    display: flex;
+    justify-content: center;   
+}
+.form{
+    width: 50%; 
+    background-color: rgb(19, 6, 153);
+    border-radius: 20px;
+    padding: 80px;
+    color: white;
+}
+button{ width: 100%; }
+h1 {
+    display: flex; 
+    justify-content: center;
+}
+small{  color: white !important; }
