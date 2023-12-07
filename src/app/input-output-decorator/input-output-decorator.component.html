@@ -13,8 +13,8 @@
         <th scope="col">Country</th>
       </tr>
     </thead>
-    <tbody *ngFor="let people of list_of_customers; let i=index;">
-      <tr>
+    <tbody>
+      <tr *ngFor="let people of list_of_customers; let i=index;">
         <th scope="row">{{people.i}}</th>
         <td>{{people.name}}</td>
         <td>{{people.address}}</td>

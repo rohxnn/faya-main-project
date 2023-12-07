@@ -13,7 +13,7 @@ export class RegistrationComponent implements OnInit {
   formattedDate = this.date.toISOString().slice(0, 10); //slicing by 10 to give the current date in a format of dd-mm-yyyy
   registrationFormData: any = [];  //object for storing the registration form data
   constructor(private fb: FormBuilder, private element: ElementRef) {}
-  goto_login = false; 
+  goto_login:boolean= false; 
   ngOnInit() {
     this.initRegistrationform();
   }
