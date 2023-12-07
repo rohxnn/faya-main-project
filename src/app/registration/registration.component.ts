@@ -1,11 +1,5 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import {
-  FormBuilder,
-  FormArray,
-  Validators,
-  FormGroup,
-  FormControl,
-} from '@angular/forms';
+import {Component,OnInit,ElementRef,Output,EventEmitter,} from '@angular/core';
+import {FormBuilder,FormArray,Validators,FormGroup,FormControl,} from '@angular/forms';
 
 @Component({
   selector: 'app-registration',
@@ -14,13 +8,12 @@ import {
 })
 export class RegistrationComponent implements OnInit {
   regform: FormGroup;
-  isSameAsPermanent: boolean = false;
-  formSubmitted: boolean = false;   
-  date = new Date();
-  formattedDate = this.date.toISOString().slice(0, 10);  
-
-  constructor(private fb: FormBuilder, private el: ElementRef) {}
-
+  isSameAsPermanent: boolean = false; //checking for Same as Permanent Address check button
+  date = new Date(); 
+  formattedDate = this.date.toISOString().slice(0, 10); //slicing by 10 to give the current date in a format of dd-mm-yyyy
+  registrationFormData: any = [];  //object for storing the registration form data
+  constructor(private fb: FormBuilder, private element: ElementRef) {}
+  goto_login = false; 
   ngOnInit() {
     this.initRegistrationform();
   }
@@ -51,9 +44,13 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  resetPermanentCity() { this.regform.get(['permanent_address', 'city']).setValue(''); }  
+  resetPermanentCity() {
+    this.regform.get(['permanent_address', 'city']).setValue('');
+  }
 
-  resetCommunicationCity() { this.regform.get(['communication_address', 'city']).setValue(''); } 
+  resetCommunicationCity() {
+    this.regform.get(['communication_address', 'city']).setValue('');
+  }
 
   resetAddress() {
     this.isSameAsPermanent = !this.isSameAsPermanent;
@@ -64,32 +61,30 @@ export class RegistrationComponent implements OnInit {
   }
 
   private scrollToFirstInvalidControl() {
-    const firstInvalidControl: HTMLElement =
-      this.el.nativeElement.querySelector('form .ng-invalid');
-    firstInvalidControl.focus();     //without smooth behavior
+    const firstInvalidControl: HTMLElement = this.element.nativeElement.querySelector('form .ng-invalid');  
+    firstInvalidControl.focus(); //without smooth behavior
   }
 
   get skills() {
     return this.regform.get('skills') as FormArray;
   }
 
-  addSKill() {
-    this.skills.push(this.fb.control('', Validators.required));
+  addSKill() { //add skill when the add skill button is clicked
+    this.skills.push(this.fb.control('', Validators.required));  
   }
 
-  isDisable(): boolean {                                              
-    return this.skills.length === 1;
+  isDisable(): boolean {
+    return this.skills.length === 1; //if skills length is 1 it will return true
   }
 
   delete(index: number) {
-    if (!this.isDisable()) {
+    if (!this.isDisable()) { // skills remove only if the isDisable is false
       this.skills.removeAt(index);
     }
   }
 
   onSubmit() {
-    const isFormSubmitted = this.formSubmitted || (this.formSubmitted = true);
-    if (this.isSameAsPermanent) {
+    if (this.isSameAsPermanent) {   //setting the value of permanent address to Communication address if the Same as Permanent Address is ticked
       const addr = this.regform.get('permanent_address')?.value;
       this.regform.controls['communication_address'].setValue({
         street: addr.street,
@@ -100,46 +95,44 @@ export class RegistrationComponent implements OnInit {
       });
     }
     if (this.regform.valid) {
+      this.goto_login = true;  //setting to true will gives the login form
       if (this.regform.get('isSameAsPermanent')) {
         this.regform.removeControl('isSameAsPermanent');
       }
-      this.regform.addControl(
-        'isSameAsPermanent',
-        new FormControl(this.isSameAsPermanent));
-          this.getFormBody();
-        }
-    else if (this.regform.invalid) {
-      if (isFormSubmitted) {
+      this.regform.addControl('isSameAsPermanent',new FormControl(this.isSameAsPermanent));  //setting isSameAsPermanent in the regform
+      this.getFormBody();
+    } else {
         this.regform.markAllAsTouched();
-        this.scrollToFirstInvalidControl();}}
+        this.scrollToFirstInvalidControl();
+    }
   }
 
-  getFormBody(){
-    const frmValue = this.regform.value;
-    const myObject={
-      First_name:frmValue.first_name,
-      Last_Name:frmValue.last_name,
-      Email:frmValue.email,
-      DOB:frmValue.date_of_birth,
-      Ph_num:frmValue.phone,
-      Gender:frmValue.gender,
-      Permanent_address:{
-        Street:frmValue.permanent_address.street,
-        Country:frmValue.permanent_address.country,
-        City:frmValue.permanent_address.city,
-        Region:frmValue.permanent_address.region,
-        Postal_Code:frmValue.permanent_address.postal_code,
+  getFormBody() {
+    const formValue = this.regform.value;
+    this.registrationFormData = {
+      First_name: formValue.first_name,
+      Last_Name: formValue.last_name,
+      Email: formValue.email,
+      DOB: formValue.date_of_birth,
+      Ph_num: formValue.phone,
+      Gender: formValue.gender,
+      Permanent_address: {
+        Street: formValue.permanent_address.street,
+        Country: formValue.permanent_address.country,
+        City: formValue.permanent_address.city,
+        Region: formValue.permanent_address.region,
+        Postal_Code: formValue.permanent_address.postal_code,
       },
-      isSameAsPermanent:this.regform.get('isSameAsPermanent').value,
-      Communication_address:{
-        Street:frmValue.communication_address.street,
-        Country:frmValue.communication_address.country,
-        City:frmValue.communication_address.city,
-        Region:frmValue.communication_address.region,
-        Postal_Code:frmValue.communication_address.postal_code,
+      isSameAsPermanent: formValue.isSameAsPermanent,
+      Communication_address: {
+        Street: formValue.communication_address.street,
+        Country: formValue.communication_address.country,
+        City: formValue.communication_address.city,
+        Region: formValue.communication_address.region,
+        Postal_Code: formValue.communication_address.postal_code,
       },
-      Skills:frmValue.skills
-    }
-    console.log(myObject);
+      Skills: formValue.skills,
+    };
+    console.log(this.registrationFormData);
   }
 }

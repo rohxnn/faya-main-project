@@ -11,20 +11,8 @@ import { ChildComponent } from './input-output-decorator/child/child.component';
 import { LoginComponent } from './login/login.component'
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    RegistrationComponent,
-    InputOutputDecoratorComponent,
-    ChildComponent,
-    LoginComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    NgxMaskModule.forRoot(),
-    FormsModule
-  ],
+  declarations: [AppComponent,RegistrationComponent,InputOutputDecoratorComponent,ChildComponent,LoginComponent],
+  imports: [BrowserModule,AppRoutingModule,ReactiveFormsModule,NgxMaskModule.forRoot(),FormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })
