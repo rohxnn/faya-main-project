@@ -1,6 +1,20 @@
 <div class="container">
-  <header>
-    <h1>List of Customers</h1>
+  <header class="d-flex">
+    <div class="heading">
+      <h1>List of Customers</h1>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Gender</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem>Male</button>
+            <button ngbDropdownItem>Female</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </header>
   <table class="table mt-3">
     <thead>
@@ -8,9 +22,15 @@
         <th scope="col">#</th>
         <th scope="col">Name</th>
         <th scope="col">Address</th>
-        <th scope="col">City</th>
+        <!-- <th scope="col">City</th>
         <th scope="col">State</th>
-        <th scope="col">Country</th>
+        <th scope="col">Country</th> -->
+        <th scope="col">Gender</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Course</th>
+        <th scope="col">Marks</th>
+        <th scope="col">Percentage</th>
+        <th scope="col">Fees</th>
       </tr>
     </thead>
     <tbody>
@@ -18,12 +38,13 @@
         <th scope="row">{{people.i}}</th>
         <td>{{people.name}}</td>
         <td>{{people.address}}</td>
-        <td>{{people.city}}</td>
+        <!-- <td>{{people.city}}</td>
         <td>{{people.state}}</td>
-        <td>{{people.country}}</td>
-        <td><button type="button" (click)="onEdit(people)">Edit</button></td>
+        <td>{{people.country}}</td> -->
+        <!-- <td><button type="button" (click)="onEdit(people)">Edit</button></td> -->
+        
       </tr>
     </tbody>
   </table>
-  <app-child [customer_detail]="customer_details" (update_details)="onUpdate($event)"></app-child>
+  <!-- <app-child [customer_detail]="customer_details" (update_details)="onUpdate($event)"></app-child> -->
 </div>
