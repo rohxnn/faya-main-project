@@ -53,8 +53,8 @@ export class RegistrationComponent implements OnInit {
   }
 
   resetAddress() {
-    this.isSameAsPermanent = !this.isSameAsPermanent;
-    if (this.regform.get(['communication_address'])) {
+    this.isSameAsPermanent = !this.isSameAsPermanent;     // setting as true
+    if (this.regform.get(['communication_address'])) {      //if communication_address has value then reset
       this.regform.get(['communication_address']).reset();
     }
     this.regform.get(['communication_address', 'country']).setValue('');
@@ -96,7 +96,7 @@ export class RegistrationComponent implements OnInit {
     }
     if (this.regform.valid) {
       this.goto_login = true;  //setting to true will gives the login form
-      if (this.regform.get('isSameAsPermanent')) {
+      if (this.regform.get('isSameAsPermanent')) {      
         this.regform.removeControl('isSameAsPermanent');
       }
       this.regform.addControl('isSameAsPermanent',new FormControl(this.isSameAsPermanent));  //setting isSameAsPermanent in the regform
