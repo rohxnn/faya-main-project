@@ -9,7 +9,6 @@ import { InputOutputDecoratorComponent } from './input-output-decorator/input-ou
 
 import { ChildComponent } from './input-output-decorator/child/child.component';
 import { LoginComponent } from './login/login.component';
-// import { PipesDirectivesComponent } from './pipes-directives/pipes-directives.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ValidationComponentComponent } from './shared/validation-component/validation-component.component';
 
