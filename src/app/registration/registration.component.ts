@@ -26,21 +26,19 @@ export class RegistrationComponent implements OnInit {
       date_of_birth: ['', Validators.required],
       phone: ['', Validators.required],
       gender: ['male', Validators.required],
-      permanent_address: this.fb.group({
-        street: ['', Validators.required],
-        country: ['', Validators.required],
-        city: ['', Validators.required],
-        region: ['', Validators.required],
-        postal_code: ['', Validators.required],
-      }),
-      communication_address: this.fb.group({
-        street: ['', Validators.required],
-        country: ['', Validators.required],
-        city: ['', Validators.required],
-        region: ['', Validators.required],
-        postal_code: ['', Validators.required],
-      }),
+      permanent_address: this.initAddressForm(),
+      communication_address: this.initAddressForm(),
       skills: this.fb.array([this.fb.control('', Validators.required)]),
+    })
+  }
+
+  initAddressForm() {
+    return  this.fb.group({
+      street: ['', Validators.required],
+      country: ['', Validators.required],
+      city: ['', Validators.required],
+      region: ['', Validators.required],
+      postal_code: ['', Validators.required],
     });
   }
 
@@ -135,4 +133,14 @@ export class RegistrationComponent implements OnInit {
     };
     console.log(this.registrationFormData);
   }
+  onClear(){
+    // this.skills.controls.forEach((element,i) => {
+    //   this.skills.removeAt(i);
+    // });
+    this.skills.controls=[];
+    
+
+
+  }
+
 }
