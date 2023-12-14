@@ -22,7 +22,7 @@ export class RegistrationComponent implements OnInit {
     this.regform = this.fb.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       date_of_birth: ['', Validators.required],
       phone: ['', Validators.required],
       gender: ['male', Validators.required],
@@ -133,14 +133,11 @@ export class RegistrationComponent implements OnInit {
     };
     console.log(this.registrationFormData);
   }
-  onClear(){
-    // this.skills.controls.forEach((element,i) => {
-    //   this.skills.removeAt(i);
-    // });
-    this.skills.controls=[];
-    
-
-
-  }
+  // onClear(){
+  //   // this.skills.controls.forEach((element,i) => {
+  //   //   this.skills.removeAt(i);
+  //   // });
+  //   this.skills.controls=[];
+  // }
 
 }

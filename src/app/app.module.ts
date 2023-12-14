@@ -11,6 +11,8 @@ import { ChildComponent } from './input-output-decorator/child/child.component';
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ValidationComponentComponent } from './shared/validation-component/validation-component.component';
+import { PercentagePipe } from './percentage.pipe';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { ValidationComponentComponent } from './shared/validation-component/vali
     InputOutputDecoratorComponent,
     ChildComponent,
     LoginComponent,
-    ValidationComponentComponent
+    ValidationComponentComponent,
+    PercentagePipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

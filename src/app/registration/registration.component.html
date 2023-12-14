@@ -11,20 +11,12 @@
             <label for="First Name">First Name<span>*</span></label>
             <input type="text" class="form-control" placeholder="First Name"
               formControlName="first_name" #first_name>
-            <!-- <ng-container
-              *ngIf="regform.get('first_name').invalid && (regform.get('first_name').touched || regform.get('first_name').dirty)">
-              <small>First Name is required</small>
-          </ng-container> -->
           <app-validation-component [control]="regform.get('first_name')" [key]="'First Name'"></app-validation-component>
           </div>
           <div class="col">
             <label for="Last Name">Last Name <span>*</span></label>
             <input type="text" name id class="form-control"
               placeholder="Last Name" formControlName="last_name">
-            <!-- <div
-              *ngIf="regform.get('last_name').invalid && (regform.get('last_name').touched || regform.get('last_name').dirty)">
-              <small>Last Name is required</small>
-            </div> -->
             <app-validation-component [control]="regform.get('last_name')" [key]="'Last Name'"></app-validation-component>
           </div>
         </div>
@@ -32,17 +24,9 @@
         <div class="row mt-3">
           <div class="col">
             <label for="Email">Email<span>*</span></label>
-            <input type="text" class="form-control" placeholder="Email"
+            <input type="email" class="form-control" placeholder="Email"
               formControlName="email">
-            <div
-              *ngIf="regform.get('email').touched || regform.get('email').dirty">
-              <small *ngIf="regform.get('email').hasError('required')">Email is
-                required</small>
-              <div
-                *ngIf="regform.get('email').invalid && !regform.get('email').hasError('required')">
-                <small>Email is invalid</small>
-              </div>
-            </div>
+            <app-validation-component [control]="regform.get('email')" [key]="'Email'"></app-validation-component>
           </div>
         </div>
         <div class="row mt-3">
@@ -50,10 +34,6 @@
             <label for="dob">Date of Birth<span>*</span></label>
             <input type="date" max="{{formattedDate}}" class="form-control"
               placeholder="Date of Birth" formControlName="date_of_birth">
-            <!-- <div
-              *ngIf="regform.get('date_of_birth').invalid && (regform.get('date_of_birth').touched || regform.get('date_of_birth').dirty)">
-              <small>Date of Birth is required</small>
-            </div> -->
             <app-validation-component [control]="regform.get('date_of_birth')" [key]="'Date of Birth'"></app-validation-component>
           </div>
           <div class="col">
@@ -61,10 +41,6 @@
             <input type="text" class="form-control" placeholder="Contact Number"
               formControlName="phone"
               mask="(000) 000-000-000">
-            <!-- <div
-              *ngIf="regform.get('phone').invalid && (regform.get('phone').touched || regform.get('phone').dirty)">
-              <small>Contact Number is required</small>
-            </div> -->
             <app-validation-component [control]="regform.get('phone')" [key]="'Contact Number'"></app-validation-component>
           </div>
         </div>
@@ -98,7 +74,7 @@
         </div>
 
         <!-- Permanent Address -->
-        <div class="container-fluid" formGroupName="permanent_address">
+        <div class="container" formGroupName="permanent_address">
           <div class="row mt-5">
             <div class="col">
               <label for="Address" class="form-label heading">Permanent Address</label>
@@ -109,10 +85,6 @@
               <label for="Street Address">Street Address<span>*</span></label>
               <input type="text" class="form-control"
                 placeholder="Street Address" formControlName="street">
-              <!-- <div
-                *ngIf="regform.get(['permanent_address','street']).invalid && (regform.get(['permanent_address','street']).touched || regform.get(['permanent_address','street']).dirty)">
-                <small>Enter your Street Address</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['permanent_address','street'])" [key]="'Street Address'"></app-validation-component>
             </div>
           </div>
@@ -126,10 +98,6 @@
                 <option value="usa">USA</option>
                 <option value="canada">Canada</option>
               </select>
-              <!-- <div
-                *ngIf="regform.get(['permanent_address','country']).invalid && (regform.get(['permanent_address','country']).touched || regform.get(['permanent_address','country']).dirty)">
-                <small>Enter your Country</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['permanent_address','country'])" [key]="'Country'"></app-validation-component>
             </div>
 
@@ -146,9 +114,6 @@
                 <option value="Banglore">Bangalore</option>
                 <option value="Delhi">Delhi</option>
               </select>
-              <!-- <div *ngIf="regform.get(['permanent_address','city']).invalid">
-                <small>Enter your City</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['permanent_address','city'])" [key]="'City'"></app-validation-component>
             </div>
 
@@ -167,9 +132,6 @@
                 <option value="Detroit">Detroit</option>
                 <option value="Alaska">Alaska</option>
               </select>
-              <!-- <div *ngIf="regform.get(['permanent_address','city']).invalid">
-                <small>Enter your City</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['permanent_address','city'])" [key]="'City'"></app-validation-component>
             </div>
 
@@ -179,9 +141,6 @@
               <label for="City">City<span>*</span></label>
               <input type="text" class="form-control" placeholder="City"
                 formControlName="city">
-              <!-- <div *ngIf="regform.get(['permanent_address','city']).invalid">
-                <small>Enter your City</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['permanent_address','city'])" [key]="'City'"></app-validation-component>
             </div>
 
@@ -191,10 +150,6 @@
               <label for="City">City<span>*</span></label>
               <input type="text" class="form-control" placeholder="City"
                 formControlName="city">
-              <!-- <div
-                *ngIf="regform.get(['permanent_address','city']).invalid && (regform.get(['permanent_address','city']).touched || regform.get(['permanent_address','city']).dirty)">
-                <small>Enter your City</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['permanent_address','city'])" [key]="'City'"></app-validation-component>
             </div>
 
@@ -204,20 +159,12 @@
               <label for="Region">Region<span>*</span></label>
               <input type="text" class="form-control" placeholder="Region"
                 formControlName="region">
-              <!-- <div
-                *ngIf="regform.get(['permanent_address','region']).invalid && (regform.get(['permanent_address','region']).touched || regform.get(['permanent_address','region']).dirty)">
-                <small>Enter your Region</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['permanent_address','region'])" [key]="'Region'"></app-validation-component>
             </div>
             <div class="col">
               <label for="postal_code">Postal Code<span>*</span></label>
               <input type="text" class="form-control" placeholder="Postal Code"
                 mask="000-000" formControlName="postal_code">
-              <!-- <div
-                *ngIf="regform.get(['permanent_address','postal_code']).invalid && (regform.get(['permanent_address','postal_code']).touched || regform.get(['permanent_address','postal_code']).dirty)">
-                <small>Enter your Postal Code</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['permanent_address','postal_code'])" [key]="'Postal Code'"></app-validation-component>
             </div>
           </div>
@@ -244,10 +191,6 @@
               <label for="Street Address">Street Address<span>*</span></label>
               <input type="text" class="form-control"
                 placeholder="Street Address" formControlName="street">
-              <!-- <div
-                *ngIf="regform.get(['communication_address','street']).invalid && (regform.get(['communication_address','street']).touched || regform.get(['communication_address','street']).dirty)">
-                <small>Enter your Street Address</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['communication_address','street'])" [key]="'Street Address'"></app-validation-component>
             </div>
           </div>
@@ -261,10 +204,6 @@
                 <option value="usa">USA</option>
                 <option value="canada">Canada</option>
               </select>
-              <!-- <div
-                *ngIf="regform.get(['communication_address','country']).invalid && (regform.get(['communication_address','country']).touched || regform.get(['communication_address','country']).dirty)">
-                <small>Enter your Country</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['communication_address','country'])" [key]="'Country'"></app-validation-component>
 
             </div>
@@ -275,10 +214,6 @@
               <label for="Country">City<span>*</span></label>
               <input type="text" class="form-control" placeholder="City"
                 formControlName="city">
-              <!-- <div
-                *ngIf="regform.get(['communication_address','city']).invalid && (regform.get(['communication_address','city']).touched || regform.get(['communication_address','city']).dirty)">
-                <small>Enter your City</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['communication_address','city'])" [key]="'City'"></app-validation-component>
             </div>
 
@@ -295,9 +230,6 @@
                 <option value="Banglore">Bangalore</option>
                 <option value="Delhi">Delhi</option>
               </select>
-              <!-- <div *ngIf="regform.get(['communication_address','city']).invalid">
-                <small>Enter your City</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['communication_address','city'])" [key]="'City'"></app-validation-component>
             </div>
 
@@ -315,11 +247,7 @@
                 <option value="Miami">Miami</option>
                 <option value="Detroit">Detroit</option>
                 <option value="Alaska">Alaska</option>
-
               </select>
-              <!-- <div *ngIf="regform.get(['communication_address','city']).invalid">
-                <small>Enter your City</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['communication_address','city'])" [key]="'City'"></app-validation-component>
             </div>
             <div class="col"
@@ -327,33 +255,20 @@
               <label for="City">City<span>*</span></label>
               <input type="text" class="form-control" placeholder="City"
                 formControlName="city">
-              <!-- <div
-                *ngIf="regform.get(['permanent_address','city']).invalid && (regform.get(['permanent_address','city']).touched || regform.get(['permanent_address','city']).dirty)">
-                <small>Enter your City</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['communication_address','city'])" [key]="'City'"></app-validation-component>
             </div>
-
           </div>
           <div class="row mt-3">
             <div class="col">
               <label for="Region">Region<span>*</span></label>
               <input type="text" class="form-control" placeholder="Region"
                 formControlName="region">
-              <!-- <div
-                *ngIf="regform.get(['communication_address','region']).invalid && (regform.get(['communication_address','region']).touched || regform.get(['communication_address','region']).dirty)">
-                <small>Enter your Region</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['communication_address','region'])" [key]="'Region'"></app-validation-component>
             </div>
             <div class="col">
               <label for="Postal Code">Postal Code<span>*</span></label>
               <input type="text" class="form-control" placeholder="Postal Code"
                 formControlName="postal_code">
-              <!-- <div
-                *ngIf="regform.get(['communication_address','postal_code']).invalid && (regform.get(['communication_address','postal_code']).touched || regform.get(['communication_address','postal_code']).dirty)">
-                <small>Enter your Postal Code</small>
-              </div> -->
               <app-validation-component [control]="regform.get(['communication_address','postal_code'])" [key]="'Postal Code'"></app-validation-component>
             </div>
           </div>
@@ -367,8 +282,7 @@
               <label for="Address" class="form-label heading">Add Skill
                 <button type="button" class="btn skill" (click)="addSKill()">Add
                   New Skill</button>
-                  <button (click)="onClear()">Clear</button>
-                  
+                  <!-- <button (click)="onClear()">Clear</button> -->    
               </label>
             </div>
           </div>
@@ -381,14 +295,11 @@
                     <i class="fa fa-trash bin " aria-hidden="true" (click)="delete(i)"></i>
                   </ng-container> 
               </div>
-
-              <div class="skill-message"
+              <ng-container class="skill-message"
                 *ngIf="skills.controls[i].invalid && skills.controls[i].touched">
                 <small>Skill is required</small>
-              </div>
-            
+              </ng-container>
             </div>
-
           </div>
         </div>
         <div class="row mt-5">

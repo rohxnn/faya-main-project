@@ -1,22 +1,18 @@
-<div class="container">
+<div class="container-fluid">
   <header class="d-flex">
     <div class="heading">
-      <h1>List of Customers</h1>
+      <!-- <h1>List of Customers</h1> -->
+      <h1>List of Students</h1>
     </div>
-    <div class="row">
-      <div class="col">
-        <div ngbDropdown class="d-inline-block">
-          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Gender</button>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem>Male</button>
-            <button ngbDropdownItem>Female</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
+        <select name="" id="" [(ngModel)]="filterText">
+          <option value="all">All</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
   </header>
-  <table class="table mt-3">
+  <hr>
+  <div class="container">
+  <table class="tab mt-3">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -34,21 +30,23 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let people of list_of_customers">
-        <th scope="row">{{people.i}}</th>
-        <td>{{people.name}}</td>
+      <tr *ngFor="let people of list_of_customers | filter:filterText; let i=index"  [ngClass]="{'white-color': i % 2 === 0, 'black-color': i % 2 !== 0, 'topper': ((people.marks / 600) * 100) >= 90}">
+        <td>{{i + 1}}</td>
+        <td>{{people.name | lowercase}} </td>
         <td>{{people.address}}</td>
-        <td>{{people.gender}}</td>
-        <td>{{people.dob}}</td>
-        <td>{{people.course}}</td>
-        <!-- <td>{{people.}}</td> -->
+        <td [ngStyle]="{color: people.gender === 'Male' ? 'red' : 'green'}">{{people.gender}}</td>
+        <td>{{people.dob | date:'fullDate'}}</td>
+        <td>{{people.course | uppercase}}</td>
+        <td>{{people.marks}}</td>
+        <td>{{people.marks | percentage:600}}</td>
+        <td>{{people.fees | currency:'INR'}}</td>
         <!-- <td>{{people.city}}</td>
         <td>{{people.state}}</td>
         <td>{{people.country}}</td> -->
         <!-- <td><button type="button" (click)="onEdit(people)">Edit</button></td> -->
-        
       </tr>
     </tbody>
   </table>
   <!-- <app-child [customer_detail]="customer_details" (update_details)="onUpdate($event)"></app-child> -->
+</div>
 </div>
