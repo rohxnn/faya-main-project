@@ -12,6 +12,6 @@ export class FilterPipe implements PipeTransform {
       return people.filter((check) => {
           return check.gender.toLowerCase() === filterStudent.toLowerCase();
       })
-    }  return ;
+    }  
   }
 }

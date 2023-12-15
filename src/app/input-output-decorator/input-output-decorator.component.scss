@@ -45,14 +45,7 @@ select{
     filter: drop-shadow(0 0 5px #FF911C );
     animation: glow 1s alternate infinite;
 }
-@keyframes glow
-{
-    0%
-    {
-        filter: drop-shadow(0 0 5px #FF911C );
-    }
-    100%
-    {
-        filter: drop-shadow(0 0 10px #FF911C );
-    }
+@keyframes glow {
+    0% { filter: drop-shadow(0 0 5px #FF911C ); }
+    100% { filter: drop-shadow(0 0 10px #FF911C ); }
 }
