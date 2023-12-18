@@ -30,7 +30,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let people of list_of_customers | filter:filterText; let i=index"  [ngClass]="{'white-color': i % 2 === 0, 'black-color': i % 2 !== 0, 'topper': ((people.marks / 600) * 100) >= 90}">
+      <tr *ngFor="let people of list_of_customers | filter:filterText; let i=index" [ngClass]="{'white-color': i % 2 === 0, 'black-color': i % 2 !== 0, 'topper': ((people.marks / 600) * 100) >= 90}">
         <td>{{i + 1}}</td>
         <td>{{people.name | lowercase}} </td>
         <td>{{people.address}}</td>

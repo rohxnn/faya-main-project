@@ -11,9 +11,9 @@ import { ChildComponent } from './input-output-decorator/child/child.component';
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ValidationComponentComponent } from './shared/validation-component/validation-component.component';
-import { PercentagePipe } from './percentage.pipe';
-import { FilterPipe } from './filter.pipe';
-import { DecimalPipe } from './decimal.pipe';
+import { PercentagePipe } from '../pipes/percentage.pipe';
+import { FilterPipe } from '../pipes/filter.pipe';
+import { DecimalPipe } from '../pipes/decimal.pipe';
 import { AddressComponent } from './shared/address/address.component';
 
 @NgModule({

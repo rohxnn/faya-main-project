@@ -20,34 +20,30 @@ export class RegistrationComponent implements OnInit {
 
   initRegistrationform() {
     this.regform = this.fb.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      date_of_birth: ['', Validators.required],
-      phone: ['', Validators.required],
-      gender: ['male', Validators.required],
+      first_name: ['', [Validators.required,this.noWhitespaceValidator]],
+      last_name: ['', [Validators.required,this.noWhitespaceValidator]],
+      email: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),this.noWhitespaceValidator]],
+      date_of_birth: ['', [Validators.required,this.noWhitespaceValidator]],
+        phone: ['', [Validators.required,this.noWhitespaceValidator]],
+      gender: ['male', [Validators.required]],
       permanent_address: this.initAddressForm(),
       communication_address: this.initAddressForm(),
-      skills: this.fb.array([this.fb.control('', Validators.required)]),
+      skills: this.fb.array([this.fb.control('', [Validators.required,this.noWhitespaceValidator])]),
     })
   }
 
   initAddressForm() {
     return  this.fb.group({
-      street: ['', Validators.required],
-      country: ['', Validators.required],
-      city: ['', Validators.required],
-      region: ['', Validators.required],
-      postal_code: ['', Validators.required],
+      street: ['', [Validators.required,this.noWhitespaceValidator]],
+      country: ['', [Validators.required,this.noWhitespaceValidator]],
+      city: ['', [Validators.required,this.noWhitespaceValidator]],
+      region: ['', [Validators.required,this.noWhitespaceValidator]],
+      postal_code: ['', [Validators.required,this.noWhitespaceValidator]],
     });
   }
 
-  resetPermanentCity() {
-    this.regform.get(['permanent_address', 'city']).setValue('');
-  }
-
-  resetCommunicationCity() {
-    this.regform.get(['communication_address', 'city']).setValue('');
+  resetCity(type) {
+    this.regform.get([type, 'city']).setValue('');
   }
 
   resetAddress() {
@@ -68,7 +64,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   addSKill() { //add skill when the add skill button is clicked
-    this.skills.push(this.fb.control('', Validators.required));  
+    this.skills.push(this.fb.control('', [Validators.required,this.noWhitespaceValidator]));  
   }
 
   isDisable(): boolean {
@@ -133,11 +129,8 @@ export class RegistrationComponent implements OnInit {
     };
     console.log(this.registrationFormData);
   }
-  // onClear(){
-  //   // this.skills.controls.forEach((element,i) => {
-  //   //   this.skills.removeAt(i);
-  //   // });
-  //   this.skills.controls=[];
-  // }
-
+  
+public noWhitespaceValidator(control: FormControl) {
+  return (control.value || '').trim().length? null : { 'whitespace': true };       
+}
 }
