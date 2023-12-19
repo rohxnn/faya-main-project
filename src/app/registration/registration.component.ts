@@ -1,5 +1,7 @@
 import {Component,OnInit,ElementRef,Output,EventEmitter,} from '@angular/core';
 import {FormBuilder,FormArray,Validators,FormGroup,FormControl,} from '@angular/forms';
+import { noWhitespaceValidator } from '../shared/custom-validator/whitespace.validators';
+
 
 @Component({
   selector: 'app-registration',
@@ -20,25 +22,25 @@ export class RegistrationComponent implements OnInit {
 
   initRegistrationform() {
     this.regform = this.fb.group({
-      first_name: ['', [Validators.required,this.noWhitespaceValidator]],
-      last_name: ['', [Validators.required,this.noWhitespaceValidator]],
-      email: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),this.noWhitespaceValidator]],
-      date_of_birth: ['', [Validators.required,this.noWhitespaceValidator]],
-        phone: ['', [Validators.required,this.noWhitespaceValidator]],
+      first_name: ['', [Validators.required,noWhitespaceValidator]],
+      last_name: ['', [Validators.required,noWhitespaceValidator]],
+      email: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),noWhitespaceValidator]],
+      date_of_birth: ['', [Validators.required,noWhitespaceValidator]],
+        phone: ['', [Validators.required,noWhitespaceValidator]],
       gender: ['male', [Validators.required]],
       permanent_address: this.initAddressForm(),
       communication_address: this.initAddressForm(),
-      skills: this.fb.array([this.fb.control('', [Validators.required,this.noWhitespaceValidator])]),
+      skills: this.fb.array([this.fb.control('', [Validators.required,noWhitespaceValidator])]),
     })
   }
 
   initAddressForm() {
     return  this.fb.group({
-      street: ['', [Validators.required,this.noWhitespaceValidator]],
-      country: ['', [Validators.required,this.noWhitespaceValidator]],
-      city: ['', [Validators.required,this.noWhitespaceValidator]],
-      region: ['', [Validators.required,this.noWhitespaceValidator]],
-      postal_code: ['', [Validators.required,this.noWhitespaceValidator]],
+      street: ['', [Validators.required]],
+      country: ['', [Validators.required,noWhitespaceValidator]],
+      city: ['', [Validators.required,noWhitespaceValidator]],
+      region: ['', [Validators.required,noWhitespaceValidator]],
+      postal_code: ['', [Validators.required,noWhitespaceValidator]],
     });
   }
 
@@ -64,7 +66,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   addSKill() { //add skill when the add skill button is clicked
-    this.skills.push(this.fb.control('', [Validators.required,this.noWhitespaceValidator]));  
+    this.skills.push(this.fb.control('', [Validators.required,noWhitespaceValidator]));  
   }
 
   isDisable(): boolean {
@@ -87,7 +89,7 @@ export class RegistrationComponent implements OnInit {
         region: addr.region,
         postal_code: addr.postal_code,
       });
-    }
+   }
     if (this.regform.valid) {
       this.goto_login = true;  //setting to true will gives the login form
       if (this.regform.get('isSameAsPermanent')) {      
@@ -129,8 +131,4 @@ export class RegistrationComponent implements OnInit {
     };
     console.log(this.registrationFormData);
   }
-  
-public noWhitespaceValidator(control: FormControl) {
-  return (control.value || '').trim().length? null : { 'whitespace': true };       
-}
 }

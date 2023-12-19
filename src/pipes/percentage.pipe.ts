@@ -5,6 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PercentagePipe implements PipeTransform {
   transform(value: any, total_mark: number) {
-    return parseFloat(((value/total_mark)*100).toFixed(2));
+    const result = (value / total_mark) * 100;
+    return result.toFixed(2);
   }
 }

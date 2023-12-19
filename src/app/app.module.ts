@@ -10,10 +10,9 @@ import { InputOutputDecoratorComponent } from './input-output-decorator/input-ou
 import { ChildComponent } from './input-output-decorator/child/child.component';
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ValidationComponentComponent } from './shared/validation-component/validation-component.component';
+import { ValidationComponentComponent } from './shared/common-validation-error/validation-component.component';
 import { PercentagePipe } from '../pipes/percentage.pipe';
 import { FilterPipe } from '../pipes/filter.pipe';
-import { DecimalPipe } from '../pipes/decimal.pipe';
 import { AddressComponent } from './shared/address/address.component';
 
 @NgModule({
@@ -26,7 +25,6 @@ import { AddressComponent } from './shared/address/address.component';
     ValidationComponentComponent,
     PercentagePipe,
     FilterPipe,
-    DecimalPipe,
     AddressComponent
   ],
   imports: [

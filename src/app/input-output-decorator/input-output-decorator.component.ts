@@ -12,6 +12,7 @@ export class InputOutputDecoratorComponent {
   //   {i: 4,name: 'Mahendra Singh Dhoni',address: '',city: 'Ranchi',state: 'Bihar',country: 'India',},
   //   {i: 5,name: 'Virat Kohli',address: '',city: 'Delhi',state: 'Delhi',country: 'India',},
   // ];
+  total_mark=600;
   list_of_customers:any= [
     {i: 1,name: 'John Smith',address: '',gender:'Male',dob:'11-12-1997',course:'mba',marks:520,percentage:'',fees:1899},
     {i: 2,name: 'Mark Vought',address: '',gender:'Male',dob:'10-6-1998',course:'b.tech',marks:420,percentage:'',fees:2899},
