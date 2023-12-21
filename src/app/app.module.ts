@@ -13,7 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ValidationComponentComponent } from './shared/common-validation-error/validation-component.component';
 import { PercentagePipe } from '../pipes/percentage.pipe';
 import { FilterPipe } from '../pipes/filter.pipe';
-import { AddressComponent } from './shared/address/address.component';
+
 
 @NgModule({
   declarations: [
@@ -24,8 +24,7 @@ import { AddressComponent } from './shared/address/address.component';
     LoginComponent,
     ValidationComponentComponent,
     PercentagePipe,
-    FilterPipe,
-    AddressComponent
+    FilterPipe
   ],
   imports: [
     BrowserModule,
