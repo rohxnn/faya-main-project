@@ -11,8 +11,8 @@ import { ChildComponent } from './input-output-decorator/child/child.component';
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ValidationComponentComponent } from './shared/common-validation-error/validation-component.component';
-import { PercentagePipe } from '../pipes/percentage.pipe';
-import { FilterPipe } from '../pipes/filter.pipe';
+import { PercentagePipe } from './shared/pipes/percentage.pipe';
+import { FilterPipe } from './shared/pipes/filter.pipe';
 
 
 @NgModule({
