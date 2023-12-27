@@ -8,12 +8,34 @@ import { RegistrationComponent } from './registration/registration.component';
 import { InputOutputDecoratorComponent } from './input-output-decorator/input-output-decorator.component';
 
 import { ChildComponent } from './input-output-decorator/child/child.component';
-import { LoginComponent } from './login/login.component'
+import { LoginComponent } from './login/login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ValidationComponentComponent } from './shared/common-validation-error/validation-component.component';
+import { PercentagePipe } from './shared/pipes/percentage.pipe';
+import { FilterPipe } from './shared/pipes/filter.pipe';
+
 
 @NgModule({
-  declarations: [AppComponent,RegistrationComponent,InputOutputDecoratorComponent,ChildComponent,LoginComponent],
-  imports: [BrowserModule,AppRoutingModule,ReactiveFormsModule,NgxMaskModule.forRoot(),FormsModule],
+  declarations: [
+    AppComponent,
+    RegistrationComponent,
+    InputOutputDecoratorComponent,
+    ChildComponent,
+    LoginComponent,
+    ValidationComponentComponent,
+    PercentagePipe,
+    FilterPipe
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
+    FormsModule,
+    NgbModule,
+    NgbModule
+  ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

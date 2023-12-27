@@ -1,5 +1,7 @@
 import {Component,OnInit,ElementRef,Output,EventEmitter,} from '@angular/core';
 import {FormBuilder,FormArray,Validators,FormGroup,FormControl,} from '@angular/forms';
+import { noWhitespaceValidator } from '../shared/custom-validator/whitespace.validators';
+
 
 @Component({
   selector: 'app-registration',
@@ -20,41 +22,35 @@ export class RegistrationComponent implements OnInit {
 
   initRegistrationform() {
     this.regform = this.fb.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      date_of_birth: ['', Validators.required],
-      phone: ['', Validators.required],
-      gender: ['male', Validators.required],
-      permanent_address: this.fb.group({
-        street: ['', Validators.required],
-        country: ['', Validators.required],
-        city: ['', Validators.required],
-        region: ['', Validators.required],
-        postal_code: ['', Validators.required],
-      }),
-      communication_address: this.fb.group({
-        street: ['', Validators.required],
-        country: ['', Validators.required],
-        city: ['', Validators.required],
-        region: ['', Validators.required],
-        postal_code: ['', Validators.required],
-      }),
-      skills: this.fb.array([this.fb.control('', Validators.required)]),
+      first_name: ['', [Validators.required,noWhitespaceValidator]],
+      last_name: ['', [Validators.required,noWhitespaceValidator]],
+      email: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),noWhitespaceValidator]],
+      date_of_birth: ['', [Validators.required,noWhitespaceValidator]],
+        phone: ['', [Validators.required,noWhitespaceValidator]],
+      gender: ['male', [Validators.required]],
+      permanent_address: this.initAddressForm(),
+      communication_address: this.initAddressForm(),
+      skills: this.fb.array([this.fb.control('', [Validators.required,noWhitespaceValidator])]),
+    })
+  }
+
+  initAddressForm() {
+    return  this.fb.group({
+      street: ['', [Validators.required]],
+      country: ['', [Validators.required,noWhitespaceValidator]],
+      city: ['', [Validators.required,noWhitespaceValidator]],
+      region: ['', [Validators.required,noWhitespaceValidator]],
+      postal_code: ['', [Validators.required,noWhitespaceValidator]],
     });
   }
 
-  resetPermanentCity() {
-    this.regform.get(['permanent_address', 'city']).setValue('');
-  }
-
-  resetCommunicationCity() {
-    this.regform.get(['communication_address', 'city']).setValue('');
+  resetCity(type) {
+    this.regform.get([type, 'city']).setValue('');
   }
 
   resetAddress() {
-    this.isSameAsPermanent = !this.isSameAsPermanent;
-    if (this.regform.get(['communication_address'])) {
+    this.isSameAsPermanent = !this.isSameAsPermanent;     // setting as true
+    if (this.regform.get(['communication_address'])) {      //if communication_address has value then reset
       this.regform.get(['communication_address']).reset();
     }
     this.regform.get(['communication_address', 'country']).setValue('');
@@ -70,7 +66,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   addSKill() { //add skill when the add skill button is clicked
-    this.skills.push(this.fb.control('', Validators.required));  
+    this.skills.push(this.fb.control('', [Validators.required,noWhitespaceValidator]));  
   }
 
   isDisable(): boolean {
@@ -93,10 +89,10 @@ export class RegistrationComponent implements OnInit {
         region: addr.region,
         postal_code: addr.postal_code,
       });
-    }
+   }
     if (this.regform.valid) {
       this.goto_login = true;  //setting to true will gives the login form
-      if (this.regform.get('isSameAsPermanent')) {
+      if (this.regform.get('isSameAsPermanent')) {      
         this.regform.removeControl('isSameAsPermanent');
       }
       this.regform.addControl('isSameAsPermanent',new FormControl(this.isSameAsPermanent));  //setting isSameAsPermanent in the regform
