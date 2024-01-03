@@ -1,0 +1,24 @@
+.container{
+  padding: 100px;
+}
+.table{
+  border: 1px solid black;
+}
+.fa{
+  cursor: pointer;
+}
+tr{
+  cursor: pointer;
+}
+tr:hover{
+  background: aliceblue !important;
+}
+.custom{
+  margin-left: 15px;
+}
+.btn{
+  border: none;
+}
+.edit-button{
+  color: white;
+}

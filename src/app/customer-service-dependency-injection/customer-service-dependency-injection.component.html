@@ -1,0 +1,39 @@
+    <div class="container">
+      <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">DOB</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">SKILLS</th>
+            <th scope="col">PLANS</th>
+            <th scope="col">PH_NUM</th>
+            <th scope="col">FIRST_NAME</th>
+            <th scope="col">LAST_NAME</th>
+            <th>ACTION</th>
+         
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customer_details; let i=index" >
+            <th scope="row">{{customer.id}}</th>
+            <ng-container *ngIf="customer.DOB === 'Invalid date'; else validDate">
+              <td>{{ formattedDate }}</td>
+            </ng-container>
+            <ng-template #validDate>
+              <td>{{ customer.DOB }}</td>
+            </ng-template>
+            <td>{{customer.Email}}</td>
+            <td>{{customer.skill}}</td>
+            <td>{{customer.Gender}}</td>
+            <td>{{customer.Ph_num}}</td>
+            <td>{{customer.First_name}}</td>
+            <td>{{customer.Last_name}}</td>
+            <td><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="onEdit(customer.id)">
+              <i class="fa fa-edit edit-button"></i>
+            </button><i class="fa fa-trash custom" aria-hidden="true"></i>
+            <app-edit-modal *ngIf="isOnEdit" [id]="id"></app-edit-modal></td>
+          </tr>
+        </tbody>
+        </table>
+    </div>
