@@ -12,24 +12,33 @@ export class CustomerServiceDependencyInjectionComponent implements OnInit {
   customer_details: any = [];
   date=new Date();
   formattedDate = this.date.toISOString().slice(0, 10);
-  id:any='';
+  customer_id:any='';
   isOnEdit: boolean;
-
   constructor(private customer:CustomersService){  }
+
   ngOnInit() {
     this.getCustomer();
     console.log(this.date)
   }
+
   private getCustomer(){
-    this.customer.fetchCustomer().subscribe((customer)=>{
-        this.customer_details=customer;
+    this.customer.fetchCustomer().subscribe((response) => {
+        this.customer_details=response;
     },
     error => console.log("error")
     )
   }
+
   onEdit(id:any){
     this.isOnEdit = true;
-     this.id=id;
-     console.log(this.id)
+     this.customer_id=id;
+    
+  }
+
+  onDelete(id:any){
+    this.customer.deletebyId(id).subscribe(() => {
+        console.log("deleted"+id);
+        this.getCustomer();
+    })
   }
 }

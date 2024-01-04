@@ -9,16 +9,27 @@ export class CustomersService {
 url:string='https://retoolapi.dev/pFSax8/data';
   constructor(private http:HttpClient) { }
 
-    fetchCustomer(){
+    fetchCustomer(): Observable<any>{
       return this.http.get(this.url).pipe((map((data)=>{
-      return data;
-      }))); }
+      return data; }))); 
+    }
 
-      getbyId(id:any){
-          return this.http.get(this.url,id);
+    getbyId(id:any): Observable<any>{
+      let url=`${this.url}/${id}`;
+      return this.http.get(url).pipe((map((data)=>{
+      return data; })));
       }
+
     deletebyId(id:any): Observable<any>{
       let url= `${this.url}/${id}`;
-      return this.http.delete(url);
+      return this.http.delete(url).pipe((map((data) => {
+        return data;
+      })));
+    }
+
+    updatebyId(id:any,value:any): Observable<any>{
+      let url=`${this.url}/${id}`;
+      return this.http.patch(url,value).pipe((map((data) => {
+        return data;})))
     }
 }
