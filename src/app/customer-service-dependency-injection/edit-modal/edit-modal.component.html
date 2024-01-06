@@ -9,31 +9,50 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <form [formGroup]="customer_form">
       <div class="modal-body">
         <div class="form-group">
           <label for="First Name">First Name</label>
           <input type="text" class="form-control" id="first_name" formControlName="first_name" >
+          <app-validation-component
+          [control]="customer_form.get('first_name')"
+          [key]="'First Name'"></app-validation-component>
         </div>
         <div class="form-group">
           <label for="Last Name">Last Name</label>
           <input type="text" class="form-control" formControlName="last_name" >
+          <app-validation-component
+          [control]="customer_form.get('last_name')"
+          [key]="'Last Name'"></app-validation-component>
         </div>
         <div class="form-group">
           <label for="dob">Date of Birth</label>
-          <input type="date" class="form-control" formControlName="dob" >
+          <input type="date" class="form-control" formControlName="dob" max="{{formattedDate}}" >
+          <app-validation-component
+          [control]="customer_form.get('dob')"
+          [key]="'Date of birth'"></app-validation-component>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
           <input type="text" class="form-control" formControlName="email" >
+          <app-validation-component
+          [control]="customer_form.get('email')"
+          [key]="'Email'"></app-validation-component>
         </div>
         <div class="form-group">
           <label for="Plans">Plans</label>
           <input type="text" class="form-control" formControlName="plans" >
+          <app-validation-component
+          [control]="customer_form.get('plans')"
+          [key]="'Plan'"></app-validation-component>
         </div>
         <div class="form-group">
           <label for="Phone Number">Phone Number</label>
-          <input type="text" class="form-control" formControlName="ph_no" >
+          <input type="text" class="form-control" formControlName="ph_no" mask="(000) 000-000-000" >
+          <app-validation-component
+          [control]="customer_form.get('ph_no')"
+          [key]="'Phone number'"></app-validation-component>
         </div>
         <br>
         <div class="form-group" formArrayName="skill">
@@ -49,12 +68,17 @@
                 (click)="delete(i)"></i>
             </ng-container>
           </div>
+          <div
+          class="skill-message"
+          *ngIf="skills.controls[i].invalid && skills.controls[i].touched">
+          <small>Skill is required</small>
+        </div>
         </div>
         </div>
       </div>
     </form>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger update-button" (click)="onUpdate()">Apply Changes</button>
+        <button type="button" class="btn btn-danger update-button" (click)="onUpdate()" data-bs-dismiss="modal" aria-label="Close">{{ isEditCustomer ? 'Apply Changes' : 'Create Customer' }}</button>
       </div>
     </div>
   </div>

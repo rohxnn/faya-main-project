@@ -1,4 +1,8 @@
     <div class="container">
+      <div class="add_cust">
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="resetEdit()">Add Customers</button>
+      </div>
+     
       <table class="table table-dark table-striped">
         <thead>
           <tr>
@@ -27,7 +31,7 @@
             <td>{{customer.Ph_num}}</td>
             <td>{{customer.First_name}}</td>
             <td>{{customer.Last_name}}</td>
-            <td><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="onEdit(customer.id)">
+            <td><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="onEdit(customer.id)" >
               <i class="fa fa-edit edit-button"></i>
             </button><i class="fa fa-trash custom" aria-hidden="true" (click)="onDelete(customer.id)"></i>
           </td>
@@ -35,4 +39,4 @@
       </tbody>
     </table>
   </div>
-  <app-edit-modal *ngIf="isOnEdit" [id]="customer_id"></app-edit-modal>
+  <app-edit-modal  [id]="customer_id" (updateValue)="checkUpdateValue($event)" [isEditCustomer]="isOnEdit"></app-edit-modal>

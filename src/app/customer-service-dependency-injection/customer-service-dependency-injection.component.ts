@@ -13,7 +13,8 @@ export class CustomerServiceDependencyInjectionComponent implements OnInit {
   date=new Date();
   formattedDate = this.date.toISOString().slice(0, 10);
   customer_id:any='';
-  isOnEdit: boolean;
+  isOnEdit: boolean = false;
+  isAdding:boolean=false;
   constructor(private customer:CustomersService){  }
 
   ngOnInit() {
@@ -32,7 +33,6 @@ export class CustomerServiceDependencyInjectionComponent implements OnInit {
   onEdit(id:any){
     this.isOnEdit = true;
      this.customer_id=id;
-    
   }
 
   onDelete(id:any){
@@ -41,4 +41,13 @@ export class CustomerServiceDependencyInjectionComponent implements OnInit {
         this.getCustomer();
     })
   }
+  checkUpdateValue(check:boolean){
+      
+      if(check){
+        this.getCustomer();
+      }}
+      
+  resetEdit(){   
+      this.isOnEdit=false;
+     }
 }

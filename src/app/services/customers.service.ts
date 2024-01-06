@@ -32,4 +32,9 @@ url:string='https://retoolapi.dev/pFSax8/data';
       return this.http.patch(url,value).pipe((map((data) => {
         return data;})))
     }
+
+    createUser(value){
+      return this.http.post(this.url,value).pipe((map((data) => {
+        return data; })))
+    }
 }
