@@ -1,3 +1,4 @@
+    <h1 style="text-align: center;">Customer Details</h1>
     <div class="container">
       <div class="add_cust">
         <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="resetEdit()">Add Customers</button>
@@ -23,14 +24,14 @@
               <td>{{ formattedDate }}</td>
             </ng-container>
             <ng-template #validDate>
-              <td>{{ customer.DOB }}</td>
+              <td>{{ customer.dob }}</td>
             </ng-template>
-            <td>{{customer.Email}}</td>
-            <td>{{customer.skill}}</td>
-            <td>{{customer.Gender}}</td>
-            <td>{{customer.Ph_num}}</td>
-            <td>{{customer.First_name}}</td>
-            <td>{{customer.Last_name}}</td>
+            <td>{{customer.email}}</td>
+            <td>{{customer.Skills}}</td>
+            <td>{{customer.gender}}</td>
+            <td>{{customer.phone_number}}</td>
+            <td>{{customer.f_name}}</td>
+            <td>{{customer.l_name}}</td>
             <td><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="onEdit(customer.id)" >
               <i class="fa fa-edit edit-button"></i>
             </button><i class="fa fa-trash custom" aria-hidden="true" (click)="onDelete(customer.id)"></i>

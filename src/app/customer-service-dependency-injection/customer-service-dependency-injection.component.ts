@@ -26,8 +26,9 @@ export class CustomerServiceDependencyInjectionComponent implements OnInit {
     this.customer.fetchCustomer().subscribe((response) => {
         this.customer_details=response;
     },
-    error => console.log("error")
-    )
+    err => {
+    console.log(err.message,'hit')
+    })
   }
 
   onEdit(id:any){
@@ -37,17 +38,17 @@ export class CustomerServiceDependencyInjectionComponent implements OnInit {
 
   onDelete(id:any){
     this.customer.deletebyId(id).subscribe(() => {
-        console.log("deleted"+id);
+        alert("Delete Successfully")
         this.getCustomer();
-    })
+    },  err => {
+      console.log(err.message,'hit')
+          })
   }
+
   checkUpdateValue(check:boolean){
-      
       if(check){
         this.getCustomer();
       }}
       
-  resetEdit(){   
-      this.isOnEdit=false;
-     }
+  resetEdit(){  this.isOnEdit=false; }
 }

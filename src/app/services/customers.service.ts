@@ -6,7 +6,7 @@ import {map,filter, Observable} from 'rxjs'
   providedIn: 'root'
 })
 export class CustomersService {
-url:string='https://retoolapi.dev/pFSax8/data';
+url:string='https://retoolapi.dev/TMekp1/data';
   constructor(private http:HttpClient) { }
 
     fetchCustomer(): Observable<any>{
